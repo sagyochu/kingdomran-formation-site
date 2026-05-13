@@ -1718,8 +1718,8 @@ window.bushosData = [
     "country": "楚国",
     "url": "#",
     "imgs": [
-      "images/414lg.jpg",
-      "images/414ur.jpg"
+      "images/414ur.jpg",
+      "images/414sr.jpg"
     ]
   },
   {
@@ -1738,8 +1738,8 @@ window.bushosData = [
     "country": "楚国",
     "url": "#",
     "imgs": [
-      "images/416ur.jpg",
-      "images/416sr.jpg"
+      "images/416lg.jpg",
+      "images/416ur.jpg"
     ]
   },
   {
