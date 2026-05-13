@@ -1203,6 +1203,7 @@ window.bushosData = [
     "country": "趙国",
     "url": "#",
     "imgs": [
+      "images/213lg.jpg",
       "images/213ur.jpg"
     ]
   },
@@ -1243,6 +1244,7 @@ window.bushosData = [
     "country": "趙国",
     "url": "#",
     "imgs": [
+      "images/217lg.jpg",
       "images/217ur.jpg"
     ]
   },
@@ -1439,6 +1441,7 @@ window.bushosData = [
     "country": "魏国",
     "url": "#",
     "imgs": [
+      "images/308lg.jpg",
       "images/308ur.jpg",
       "images/308sr.jpg"
     ]
@@ -1482,6 +1485,7 @@ window.bushosData = [
     "country": "魏国",
     "url": "#",
     "imgs": [
+      "images/312lg.jpg",
       "images/312ur.jpg"
     ]
   },
@@ -1825,6 +1829,7 @@ window.bushosData = [
     "country": "韓国",
     "url": "#",
     "imgs": [
+      "images/602lg.jpg",
       "images/602ur.jpg",
       "images/602sr.jpg"
     ]
@@ -1835,6 +1840,7 @@ window.bushosData = [
     "country": "韓国",
     "url": "#",
     "imgs": [
+      "images/603lg.jpg",
       "images/603ur.jpg",
       "images/603sr.jpg"
     ]
@@ -1886,6 +1892,7 @@ window.bushosData = [
     "country": "山の民",
     "url": "#",
     "imgs": [
+      "images/702lg.jpg",
       "images/702ur.jpg",
       "images/702sr.jpg"
     ]
@@ -1896,6 +1903,7 @@ window.bushosData = [
     "country": "山の民",
     "url": "#",
     "imgs": [
+      "images/703lg.jpg",
       "images/703ur.jpg",
       "images/703sr.jpg"
     ]
