@@ -1713,13 +1713,33 @@ window.bushosData = [
     ]
   },
   {
-    "name": "巨暴",
-    "kana":"きょぼう",
+    "name": "魯近",
+    "kana":"ろきん",
     "country": "楚国",
     "url": "#",
     "imgs": [
       "images/414lg.jpg",
       "images/414ur.jpg"
+    ]
+  },
+  {
+    "name": "豪徳",
+    "kana":"ごうとく",
+    "country": "楚国",
+    "url": "#",
+    "imgs": [
+      "images/415ur.jpg",
+      "images/415sr.jpg"
+    ]
+  },
+  {
+    "name": "巨暴",
+    "kana":"きょぼう",
+    "country": "楚国",
+    "url": "#",
+    "imgs": [
+      "images/416ur.jpg",
+      "images/416sr.jpg"
     ]
   },
   {
