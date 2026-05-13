@@ -162,6 +162,7 @@ window.bushosData = [
     "country": "秦国",
     "url": "#",
     "imgs": [
+      "images/015lg.jpg",
       "images/015ur.jpg",
       "images/015sr.jpg"
     ]
@@ -172,6 +173,7 @@ window.bushosData = [
     "country": "秦国",
     "url": "#",
     "imgs": [
+      "images/016lg.jpg",
       "images/016ur.jpg",
       "images/016sr.jpg"
     ]
@@ -182,6 +184,8 @@ window.bushosData = [
     "country": "秦国",
     "url": "#",
     "imgs": [
+      "images/017lg.jpg",
+      "images/017ur.jpg",
       "images/017sr.jpg",
       "images/017r.jpg"
     ]
@@ -252,6 +256,7 @@ window.bushosData = [
     "country": "秦国",
     "url": "#",
     "imgs": [
+      "images/024lg.jpg",
       "images/024ur.jpg",
       "images/024sr.jpg"
     ]
@@ -458,6 +463,9 @@ window.bushosData = [
     "country": "秦国",
     "url": "#",
     "imgs": [
+      "images/044lg.jpg",
+      "images/044ur.jpg",
+      "images/044sr.jpg",
       "images/044r.jpg"
     ]
   },
@@ -806,6 +814,7 @@ window.bushosData = [
     "country": "秦国",
     "url": "#",
     "imgs": [
+      "images/078lg.jpg",
       "images/078ur.jpg"
     ]
   },
@@ -903,6 +912,7 @@ window.bushosData = [
     "country": "秦国",
     "url": "#",
     "imgs": [
+      "images/088lg.jpg",
       "images/088ur.jpg"
     ]
   },
@@ -912,6 +922,8 @@ window.bushosData = [
     "country": "秦国",
     "url": "#",
     "imgs": [
+      "images/089lg.jpg",
+      "images/089ur.jpg",
       "images/089sr.jpg"
     ]
   },
@@ -921,6 +933,8 @@ window.bushosData = [
     "country": "秦国",
     "url": "#",
     "imgs": [
+      "images/090lg.jpg",
+      "images/090ur.jpg",
       "images/090sr.jpg"
     ]
   },
