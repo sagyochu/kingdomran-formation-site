@@ -3,31 +3,28 @@
     --bg-slot: #574735;
     --border-gold: #B59153;
     --accent-orange: #F29708;
-
     --bg-soudaisho: #BB2A04;
     --text-soudaisho: #E4D200;
-
     --bg-army: #302609;
     --text-army: #FBEBBB;
-
     --bg-gunshi: #1D2227;
     --text-gunshi: #C8E4E9;
 }
 
-/* ==========================================
-   基本設定
-========================================== */
+/* すべての要素で box-sizing を統一 */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
+/* body 自体に横スクロールを許可 */
 html,
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 body {
@@ -36,25 +33,27 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px 10px;
+    padding: 30px 0;
     font-family: sans-serif;
-    width: 100%;
+
+    /* PC固定サイズの横幅をそのまま保持 */
+    min-width: 1180px;
 }
 
-/* ==========================================
+/* =========================
    メインラッパー
-========================================== */
+========================= */
 #app-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 20px;
-    width: 100%;
+
+    /* 内容サイズそのまま */
+    width: fit-content;
+    flex-shrink: 0;
 }
 
-/* ==========================================
-   左右矢印
-========================================== */
+/* 左右の矢印ボタン */
 .nav-btn {
     background: none;
     border: none;
@@ -62,35 +61,35 @@ body {
     font-size: 5rem;
     cursor: pointer;
     flex-shrink: 0;
-    line-height: 1;
-    padding: 0;
 }
 
-/* ==========================================
-   メイン編成領域
-========================================== */
+/* =========================
+   キャプチャ領域
+========================= */
 #capture-area {
     background-color: rgba(0, 0, 0, 0.5);
     border: 3px solid var(--border-gold);
     padding: 20px;
 
-    /* PC基準サイズ */
-    width: 1086px;
+    /* PCと同じ固定サイズ */
+    width: fit-content;
 
-    transform-origin: top center;
+    /* 内部スクロールは無効 */
+    overflow: visible;
 }
 
-/* ==========================================
+/* =========================
    ヘッダー
-========================================== */
+========================= */
 .formation-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 15px;
     gap: 10px;
 
+    /* PC固定サイズ */
     width: 1040px;
-    margin-bottom: 15px;
 }
 
 .header-left,
@@ -104,15 +103,11 @@ body {
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-
     background: #333;
     border: 1px solid var(--border-gold);
-
     padding-left: 10px;
-
     width: 100%;
     height: 45px;
-
     overflow: hidden;
 }
 
@@ -120,84 +115,63 @@ body {
     font-weight: bold;
     font-size: 0.85rem;
     color: var(--border-gold);
-
     white-space: nowrap;
-
     margin-right: 5px;
 }
 
 .limit-select {
     width: 100%;
-    height: 100%;
-
     border: none;
-    outline: none;
-
     color: white;
-    background: transparent;
-
     padding: 0 5px;
-
     font-weight: bold;
     cursor: pointer;
+    outline: none;
+    height: 100%;
+    background: transparent;
 }
 
 #formation-name {
-    width: 100%;
-    height: 45px;
-
     background: rgba(0, 0, 0, 0.8);
-
     border: 1px solid var(--border-gold);
-
     color: white;
-
     font-size: 1.1rem;
     text-align: center;
+    width: 100%;
+    height: 45px;
 }
 
 #page-indicator {
     width: 80px;
-
     text-align: right;
-
     font-size: 0.8rem;
     color: var(--border-gold);
-
     flex-shrink: 0;
 }
 
-/* ==========================================
+/* =========================
    編成グリッド
-========================================== */
+========================= */
 .formation-grid {
     display: flex;
     gap: 10px;
-
     align-items: flex-start;
-
-    width: 1040px;
+    width: fit-content;
 }
 
 .unit-column {
     width: 140px;
-
     display: flex;
     flex-direction: column;
-
     gap: 6px;
-
     flex-shrink: 0;
 }
 
 .column-label {
     border: 1px solid var(--border-gold);
-
     text-align: center;
-
     font-size: 0.85rem;
     font-weight: bold;
-
     padding: 6px 0;
 }
 
@@ -218,226 +192,144 @@ body {
 
 .slot {
     width: 100%;
-
     aspect-ratio: 313 / 440;
-
     background-color: var(--bg-slot);
-
     border: 1px solid var(--border-gold);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
-    overflow: hidden;
-
     cursor: pointer;
-
+    overflow: hidden;
     position: relative;
 }
 
 .slot img {
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
     display: block;
 }
 
 .plus-mark {
     font-size: 2.5rem;
-
     color: var(--border-gold);
-
     opacity: 0.4;
 }
 
-/* ==========================================
+/* =========================
    追加設定
-========================================== */
+========================= */
 .extra-settings {
     background: rgba(0, 0, 0, 0.4);
-
     border: 1px solid var(--border-gold);
-
     padding: 6px;
-
     min-height: 110px;
-
     display: flex;
     flex-direction: column;
-
     gap: 5px;
 }
 
 .config-row {
     display: flex;
     flex-direction: column;
-
     gap: 2px;
 }
 
 .config-label {
     font-size: 0.7rem;
-
     color: var(--border-gold);
 }
 
 .config-select {
-    width: 100%;
-
     border: none;
-
-    padding: 3px;
-
     font-size: 0.8rem;
-
+    padding: 3px;
     cursor: pointer;
-
     color: white;
+    width: 100%;
 }
 
 .memo-input {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid #777;
+    color: white;
+    font-size: 0.85rem;
     width: 100%;
     height: 50px;
-
     resize: none;
-
-    background: rgba(255, 255, 255, 0.08);
-
-    border: 1px solid #777;
-
-    color: white;
-
-    font-size: 0.85rem;
 }
 
-/* ==========================================
+/* =========================
    下部ボタン
-========================================== */
+========================= */
 .bottom-controls {
     margin: 30px 0;
-
     display: flex;
     gap: 20px;
-
-    width: 100%;
-    max-width: 1000px;
-
+    width: 1000px;
     justify-content: center;
 }
 
 .ctrl-btn {
     flex: 1;
-
     padding: 18px;
-
-    border: 2px solid var(--border-gold);
-    border-radius: 8px;
-
-    color: white;
-
     font-size: 1.2rem;
     font-weight: bold;
-
     cursor: pointer;
-
+    border: 2px solid var(--border-gold);
+    border-radius: 8px;
+    color: white;
     transition: 0.2s;
 }
 
-.copy-btn {
-    background-color: #2E7D32;
-}
+.copy-btn { background-color: #2E7D32; }
+.reset-btn { background-color: #888; }
+.paste-btn { background-color: #E65100; }
+.cancel-btn { background-color: #C62828; }
 
-.reset-btn {
-    background-color: #888;
-}
-
-.paste-btn {
-    background-color: #E65100;
-}
-
-.cancel-btn {
-    background-color: #C62828;
-}
-
-/* ==========================================
+/* =========================
    情報欄
-========================================== */
+========================= */
 .info-section {
-    width: 100%;
-    max-width: 1000px;
-
+    width: 1000px;
     margin-top: 20px;
-
     border-top: 1px solid rgba(181, 145, 83, 0.3);
-
     padding-top: 20px;
-
     color: #ccc;
-
     font-size: 0.85rem;
     line-height: 1.6;
 }
 
 .info-container {
     background: rgba(0, 0, 0, 0.2);
-
     padding: 25px;
-
     border-radius: 8px;
 }
 
 .info-container h3 {
     color: var(--border-gold);
-
     margin-top: 0;
-    margin-bottom: 20px;
-
-    padding-bottom: 5px;
-
     border-bottom: 1px solid var(--border-gold);
-
     display: inline-block;
-}
-
-.info-block {
+    padding-bottom: 5px;
     margin-bottom: 20px;
 }
 
-.info-block h4 {
-    margin: 0 0 10px 0;
-
-    color: #eee;
-
-    font-size: 0.95rem;
-}
-
+.info-block { margin-bottom: 20px; }
+.info-block h4 { margin: 0 0 10px 0; color: #eee; font-size: 0.95rem; }
 .info-block ul,
-.info-block ol {
-    margin: 0;
-
-    padding-left: 20px;
-}
-
-.info-block li {
-    margin-bottom: 8px;
-}
+.info-block ol { margin: 0; padding-left: 20px; }
+.info-block li { margin-bottom: 8px; }
 
 .info-block.contact {
     border-top: 1px dashed #555;
-
     padding-top: 15px;
-
     text-align: center;
-
     font-weight: bold;
 }
 
 .info-block a {
     color: var(--accent-orange);
-
     text-decoration: none;
 }
 
@@ -445,230 +337,105 @@ body {
     text-decoration: underline;
 }
 
-/* ==========================================
+/* =========================
    モーダル
-========================================== */
+========================= */
 .modal {
     display: none;
-
     position: fixed;
-
-    inset: 0;
-
     z-index: 1000;
-
+    inset: 0;
     background: rgba(0, 0, 0, 0.85);
 }
 
 .modal-content {
     background: var(--bg-main);
-
     border: 3px solid var(--border-gold);
-
     margin: 2% auto;
-
     padding: 20px;
-
     width: 650px;
-    max-width: calc(100vw - 20px);
-
     max-height: 90vh;
-
     display: flex;
     flex-direction: column;
 }
 
 .scroll-area {
     overflow-y: auto;
-
     flex-grow: 1;
 }
 
 .image-grid {
     display: grid;
-
     grid-template-columns: repeat(5, 1fr);
-
     gap: 8px;
-
     margin-top: 10px;
 }
 
 .image-item {
     width: 100%;
-
     aspect-ratio: 313 / 440;
-
     border: 1px solid var(--border-gold);
-
-    object-fit: cover;
-
     cursor: pointer;
+    object-fit: cover;
 }
 
 .search-box {
     width: 100%;
-
     padding: 12px;
-
     margin-bottom: 15px;
-
     background: #111;
-
     border: 1px solid var(--border-gold);
-
     color: #fff;
 }
 
 .choice-btn {
     width: 100%;
-
     padding: 15px;
-
     margin: 5px 0;
-
     background: var(--bg-slot);
-
     border: 1px solid var(--border-gold);
-
     color: white;
-
     text-align: left;
-
     cursor: pointer;
 }
 
 .menu-modal-overlay {
     display: none;
-
     position: fixed;
-
     inset: 0;
-
-    z-index: 2000;
-
     background: rgba(0, 0, 0, 0.75);
+    z-index: 2000;
 }
 
 .menu-modal {
     display: none;
-
     position: fixed;
-
     top: 50%;
     left: 50%;
-
     transform: translate(-50%, -50%);
-
-    width: 300px;
-    max-width: calc(100vw - 20px);
-
-    padding: 20px;
-
-    border-radius: 12px;
-
     background: #fff;
-
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
     z-index: 2001;
-
     text-align: center;
-
     color: #333;
 }
 
 .menu-button {
     display: block;
-
     width: 100%;
-
     padding: 12px;
-
     margin: 8px 0;
-
     border: 1px solid #ccc;
     border-radius: 6px;
-
     cursor: pointer;
 }
 
 .close-btn {
     background: none;
     border: none;
-
     color: white;
-
     font-size: 2rem;
-
     cursor: pointer;
-}
-
-/* ==========================================
-   レスポンシブ縮小
-========================================== */
-@media (max-width: 1250px) {
-
-    /*
-      必要幅:
-      capture-area = 1086px
-      矢印 = 約140px
-      gap = 20px
-      余白 = 少し
-
-      → 全体を自動縮小
-    */
-
-    #capture-area {
-        zoom: calc((100vw - 170px) / 1086);
-    }
-
-    #app-wrapper {
-        gap: 8px;
-    }
-
-    .nav-btn {
-        font-size: clamp(2rem, 6vw, 4rem);
-    }
-
-    .ctrl-btn {
-        font-size: 1rem;
-        padding: 14px;
-    }
-
-    .bottom-controls {
-        gap: 10px;
-    }
-
-    .info-container {
-        padding: 15px;
-    }
-
-    .image-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* ==========================================
-   スマホ向け
-========================================== */
-@media (max-width: 600px) {
-
-    body {
-        padding: 10px 5px;
-    }
-
-    .nav-btn {
-        font-size: 2rem;
-    }
-
-    .bottom-controls {
-        flex-direction: column;
-    }
-
-    .image-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .modal-content {
-        padding: 10px;
-    }
 }
