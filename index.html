@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キングダム乱軍構成シミュレーション v13.6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app-wrapper">
+        <button class="nav-btn" onclick="changeFormation(-1)">◀</button>
+
+        <div id="capture-area">
+            <div class="formation-header">
+                <div class="header-left">
+                    <div class="limit-container">
+                        <span class="limit-label">出撃制限</span>
+                        <select id="limit-type" class="limit-select" onchange="updateLimitStyle()">
+                            <option value="none">制限なし</option>
+                            <option value="soldier">歩兵、弓兵、盾兵のみ出撃可能</option>
+                            <option value="auto-none">オート出撃：制限なし</option>
+                            <option value="auto-soldier">オート出撃：歩兵、弓兵、盾兵のみ出撃可能</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <input type="text" id="formation-name" placeholder="軍構成">
+                </div>
+                <div id="page-indicator">Page 1 / 5</div>
+            </div>
+
+            <div id="unit-group-container" class="formation-grid">
+                </div>
+        </div>
+
+        <button class="nav-btn" onclick="changeFormation(1)">▶</button>
+    </div>
+
+    <div class="bottom-controls" id="normal-controls">
+        <button class="ctrl-btn copy-btn" onclick="copyCurrentFormation()">軍構成をコピー</button>
+        <button class="ctrl-btn reset-btn" onclick="resetCurrentFormation()">編成をリセット</button>
+    </div>
+
+    <div class="bottom-controls" id="copy-controls" style="display: none;">
+        <button class="ctrl-btn paste-btn" onclick="pasteFormation()">軍構成をペースト</button>
+        <button class="ctrl-btn cancel-btn" onclick="cancelCopy()">コピー状態を解除</button>
+    </div>
+
+    <div class="info-section">
+        <div class="info-container">
+            <h3>本サイトのご利用について</h3>
+            
+            <div class="info-block">
+                <h4>【権利および運営について】</h4>
+                <ul>
+                    <li><strong>非公式ファンサイト:</strong> 本サイトは『キングダム 乱 -天下統一への道-』の非公式ファンサイトであり、開発・運営元および公式とは一切関係ありません。</li>
+                    <li><strong>著作権の帰属:</strong> 掲載されているコンテンツ（画像・テキスト・データ等）の著作権および知的財産権は、すべて各権利者に帰属します。無断転載を禁止し、あくまで個人利用の範囲でご活用ください。</li>
+                    <li><strong>運営について:</strong> プログラミング初心者が作成・運営しているため、至らない点が多くありますが、何卒ご了承ください。</li>
+                </ul>
+            </div>
+
+            <div class="info-block">
+                <h4>【掲載内容について】</h4>
+                <ul>
+                    <li><strong>武将画像:</strong> 武将画像は可能な限り星表示のない正確なものを用意するよう努めておりますが、一部対応できていない武将も存在します。</li>
+                    <li><strong>正確性の保証:</strong> コンテンツの正確性については最大限配慮しておりますが、それを保証するものではありません。当サイトの利用によって生じた損害等について、一切の責任を負いかねます。</li>
+                </ul>
+            </div>
+
+            <div class="info-block">
+                <h4>【プライバシーポリシー】</h4>
+                <ol>
+                    <li><strong>個人情報の保護:</strong> 当サイトはユーザーのプライバシーを尊重し、個人情報の保護に努めます。</li>
+                    <li><strong>広告およびアクセス解析:</strong> 当サイトでは、広告の掲載やアクセス解析ツールによるデータ収集は行っておりません。</li>
+                    <li><strong>ポリシーの変更:</strong> 必要に応じて本規約を変更することがあります。変更後はサイトに掲載した時点で効力を生じるものとします。</li>
+                </ol>
+            </div>
+
+            <div class="info-block contact">
+                問題を発見した場合や、その他お問い合わせについては、こちらの<a href="sabus7250@gmail.com">ご連絡先</a>までお願いいたします。
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="color:var(--border-gold); font-weight:bold;">武将検索</span>
+                <button class="close-btn" onclick="closePopup()">&times;</button>
+            </div>
+            <div class="search-container">
+                <input type="text" id="busho-search" class="search-box" placeholder="武将名・ひらがなで検索..." oninput="filterBushos()">
+            </div>
+            <div id="modal-body" class="scroll-area"></div>
+        </div>
+    </div>
+
+    <div id="menu-overlay" class="menu-modal-overlay" onclick="closeMenu()"></div>
+    <div id="menu-modal" class="menu-modal">
+        <div id="menu-name" class="menu-title">武将名</div>
+        <button class="menu-button" onclick="handleMenuSelection('change-busho')">武将変更</button>
+        <button class="menu-button" onclick="handleMenuSelection('change-img')">画像変更</button>
+        <button class="menu-button delete" onclick="handleMenuSelection('delete-img')">画像を削除</button>
+        <button class="menu-button" onclick="handleMenuSelection('detail')">武将詳細(外部リンク)</button>
+        <button class="menu-button cancel" onclick="closeMenu()">キャンセル</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="bushos-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
