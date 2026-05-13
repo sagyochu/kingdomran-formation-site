@@ -1,6 +1,3 @@
-/* =========================
-   基本設定
-========================= */
 :root {
     --bg-main: #3E251C;
     --bg-slot: #574735;
@@ -14,46 +11,43 @@
     --text-gunshi: #C8E4E9;
 }
 
-/* 横幅計算を安定化 */
+/* ==========================================
+   基本設定
+========================================== */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-/* 横スクロール防止 */
 html,
 body {
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-/* =========================
-   Body
-========================= */
 body {
     background-color: var(--bg-main);
     color: white;
-    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px 10px; /* 左右に余白を追加 */
+    padding: 30px 10px;
     font-family: sans-serif;
     width: 100%;
 }
 
-/* =========================
+/* ==========================================
    メインレイアウト
-========================= */
+========================================== */
 #app-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 20px;
     width: 100%;
     max-width: 100%;
-    justify-content: center;
-    overflow-x: auto; /* 小画面では横スクロール可能 */
-    padding: 0 5px;
 }
 
 .nav-btn {
@@ -63,23 +57,23 @@ body {
     font-size: 5rem;
     cursor: pointer;
     flex-shrink: 0;
+    line-height: 1;
 }
 
-/* =========================
-   キャプチャ領域
-========================= */
+/* ==========================================
+   キャプチャ領域（PC基準幅1086px）
+========================================== */
 #capture-area {
     background-color: rgba(0, 0, 0, 0.5);
     border: 3px solid var(--border-gold);
     padding: 20px;
-    width: fit-content;
-    max-width: 100%;
-    overflow-x: auto;
+    width: 1086px; /* 1040 + padding + border */
+    transform-origin: top center;
 }
 
-/* =========================
+/* ==========================================
    ヘッダー
-========================= */
+========================================== */
 .formation-header {
     display: flex;
     justify-content: space-between;
@@ -87,7 +81,6 @@ body {
     margin-bottom: 15px;
     gap: 10px;
     width: 1040px;
-    max-width: 100%;
 }
 
 .header-left,
@@ -147,14 +140,14 @@ body {
     flex-shrink: 0;
 }
 
-/* =========================
+/* ==========================================
    編成グリッド
-========================= */
+========================================== */
 .formation-grid {
     display: flex;
     gap: 10px;
     align-items: flex-start;
-    width: max-content; /* 内容サイズを維持 */
+    width: 1040px;
 }
 
 .unit-column {
@@ -214,9 +207,9 @@ body {
     opacity: 0.4;
 }
 
-/* =========================
+/* ==========================================
    追加設定
-========================= */
+========================================== */
 .extra-settings {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid var(--border-gold);
@@ -257,9 +250,9 @@ body {
     resize: none;
 }
 
-/* =========================
+/* ==========================================
    下部ボタン
-========================= */
+========================================== */
 .bottom-controls {
     margin: 30px 0;
     display: flex;
@@ -281,25 +274,14 @@ body {
     transition: 0.2s;
 }
 
-.copy-btn {
-    background-color: #2E7D32;
-}
+.copy-btn { background-color: #2E7D32; }
+.reset-btn { background-color: #888; }
+.paste-btn { background-color: #E65100; }
+.cancel-btn { background-color: #C62828; }
 
-.reset-btn {
-    background-color: #888;
-}
-
-.paste-btn {
-    background-color: #E65100;
-}
-
-.cancel-btn {
-    background-color: #C62828;
-}
-
-/* =========================
+/* ==========================================
    情報欄
-========================= */
+========================================== */
 .info-section {
     width: 100%;
     max-width: 1000px;
@@ -326,9 +308,7 @@ body {
     margin-bottom: 20px;
 }
 
-.info-block {
-    margin-bottom: 20px;
-}
+.info-block { margin-bottom: 20px; }
 
 .info-block h4 {
     margin: 0 0 10px 0;
@@ -362,9 +342,9 @@ body {
     text-decoration: underline;
 }
 
-/* =========================
+/* ==========================================
    モーダル
-========================= */
+========================================== */
 .modal {
     display: none;
     position: fixed;
@@ -467,24 +447,24 @@ body {
     cursor: pointer;
 }
 
-/* =========================
-   スマホ・タブレット対応
-========================= */
-@media (max-width: 1024px) {
-    body {
-        padding: 15px 5px;
-    }
-
-    #app-wrapper {
-        justify-content: flex-start;
+/* ==========================================
+   レスポンシブ縮小
+   1100px未満で全体を自動縮小
+========================================== */
+@media (max-width: 1100px) {
+    #capture-area {
+        zoom: calc((100vw - 30px) / 1086);
     }
 
     .nav-btn {
-        font-size: 3rem;
+        font-size: clamp(2rem, 6vw, 4rem);
+    }
+
+    #app-wrapper {
+        gap: 8px;
     }
 
     .bottom-controls {
-        flex-direction: column;
         gap: 10px;
     }
 
@@ -502,13 +482,20 @@ body {
     }
 }
 
+/* ==========================================
+   スマホ向け微調整
+========================================== */
 @media (max-width: 600px) {
-    .nav-btn {
-        font-size: 2.2rem;
+    body {
+        padding: 10px 5px;
     }
 
-    .formation-header {
-        min-width: 1040px; /* PCと同じ幅を維持 */
+    .nav-btn {
+        font-size: 2rem;
+    }
+
+    .bottom-controls {
+        flex-direction: column;
     }
 
     .image-grid {
