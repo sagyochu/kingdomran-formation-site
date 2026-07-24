@@ -192,7 +192,7 @@ function handleMenuSelection(action) {
             updateUI(); saveToStorage(); 
             break;
         case 'detail': 
-            const detailUrl = `https://kinran.work.gd/k/${currentBusho.country}/${currentBusho.name}`;
+            const detailUrl = `https://kinran.w-melon.org/k/${currentBusho.country}/${currentBusho.name}`;
             window.open(detailUrl, '_blank'); 
             break;
     }
